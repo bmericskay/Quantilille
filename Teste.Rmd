@@ -1,0 +1,46 @@
+---
+title: "DVF"
+author: "Boris Mericskay"
+date: "30/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+library(tidyverse)
+
+```
+
+## Including Plots
+
+### Selection des transactions de type 'Ventes' de 'Maison' et 'Appartement'
+```{r cars}
+etape1 <- DVF %>% filter(nature_mutation == "Vente")
+etape1bis <- etape1 %>% filter(type_local == "Maison" | type_local == "Appartement")
+```
+### Selection et renommage des variables
+```{r cars}
+etape2 <- etape1bis %>% select(id = id_mutation, disposition = numero_disposition, parcelle= id_parcelle, date = date_mutation, nature = nature_mutation, codecommune = code_commune, departement = code_departement, type = type_local, surface = surface_reelle_bati, piece = nombre_pieces_principales, prix = valeur_fonciere, latitude, longitude)
+```
+### Remplacement des cellules vides par des NA et suppression des NA
+```{r cars}
+etape2[etape2==""] <- NA
+etape3 <- etape2 %>% na.omit()
+```
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
