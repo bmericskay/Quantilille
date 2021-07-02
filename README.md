@@ -17,7 +17,7 @@
 > https://kepler.gl/
 
 
-> https://studio.unfolded.ai/home pour profiter des KeplerGL en mode SaaS
+> https://studio.unfolded.ai/home pour profiter de KeplerGL en mode SaaS
 
 
 ## Les données
